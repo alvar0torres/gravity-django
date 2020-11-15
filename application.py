@@ -4,7 +4,6 @@ import sqlalchemy
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -13,7 +12,6 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
 from sqlalchemy import inspect
-from flask_sqlalchemy import SQLAlchemy
 
 
 from helpers import apology, login_required, lookup, usd
