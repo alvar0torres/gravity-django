@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Calculator
+{% endblock %}
+
+{% block main %}
+<form action="/calculator" method="post">
+
+        <div class="form-group">
+            <select class="form-control" name="planet">
+                <option disabled selected value="">World</option>
+                    <option value="Moon">Moon</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                    <option value="Pluto">Pluto</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" min="0" name="weight" placeholder="Weight (kg)" type="number">
+        </div>
+        <button class="btn btn-warning" type="submit">Calculate</button>
+    </form>
+
+{% endblock %}

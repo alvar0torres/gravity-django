@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+<p><a class="btn btn-warning" href="calculator" role="button">Go back to calculator</a></p>
+<table style="width:100%" class="table table-striped">
+    <thead>
+        <tr>
+            <th>World</th>
+            <th>Weight on Earth (kg)</th>
+            <th>Weight on World (kg)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for i in history %}
+        <tr>
+
+            <td>{{ i["world"] }}</strong></td>
+            <td>{{ i["earth_weight"] }}</td>
+            <td>{{ i["world_weight"] }}</td>
+            <td>{{ i["date"] }}</td>
+
+
+        </tr>
+            {% endfor %}
+        </tr>
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
