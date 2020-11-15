@@ -226,7 +226,7 @@ def register():
         # Checking if the user exists and inserting if negative
         user_id = session['user_id']
         if len(users) != 1:
-            db.execute("INSERT INTO users (id, username, hash, email) VALUES (:user_id, :username, :hashed, :email)", user_id=user_id, username=username, hashed=hashed, email=email)
+            db.execute("INSERT INTO users (username, hash, email) VALUES (:username, :hashed, :email)", username=username, hashed=hashed, email=email)
             return redirect("/")
         else:
             return apology("That username already exists")
