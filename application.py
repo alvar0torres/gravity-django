@@ -83,7 +83,7 @@ def login():
 
         # Query database for username
         rows = cur.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
+                          username=request.form.get('username'))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
@@ -204,7 +204,7 @@ def register():
             return apology("password and confirmation do not match", 403)
 
         # Querying the database
-        users = cur.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+        users = cur.execute("SELECT * FROM users WHERE username = :username", username=request.form.get('username'))
 
         # Hashing password
         hashed = generate_password_hash(request.form.get("password"), method='pbkdf2:sha256', salt_length=8)
