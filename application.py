@@ -1,5 +1,4 @@
 import os
-import sqlalchemy
 import psycopg2
 
 from cs50 import SQL
@@ -9,9 +8,6 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
-from sqlalchemy import create_engine
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
-from sqlalchemy import inspect
 
 
 from helpers import apology, login_required, lookup, usd
@@ -40,9 +36,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-conn = psycopg2.connect(database="d9dbadah2gk8f7", user="ziznnimeremyjy", password="3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5", host="ec2-54-217-224-85.eu-west-1.compute.amazonaws.com", port="5432")
-print("Database opened successfully")
-cur = conn.cursor()
 
 db = SQL("Heroku---postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
 
