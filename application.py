@@ -37,7 +37,7 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 
-db = SQL("Heroku---postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
+db = SQL("postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
 
 
 @app.route("/")
