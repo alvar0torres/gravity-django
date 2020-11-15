@@ -224,7 +224,6 @@ def register():
                 return apology("Please enter a valid email")
 
         # Checking if the user exists and inserting if negative
-        user_id = session['user_id']
         if len(users) != 1:
             db.execute("INSERT INTO users (username, hash, email) VALUES (:username, :hashed, :email)", username=username, hashed=hashed, email=email)
             return redirect("/")
