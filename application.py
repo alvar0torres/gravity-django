@@ -1,9 +1,10 @@
 import os
 import sqlalchemy
-import flask_sqlalchemy
+
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
