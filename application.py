@@ -11,6 +11,8 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
 from sqlalchemy import inspect
+from flask_sqlalchemy import SQLAlchemy
+
 
 from helpers import apology, login_required, lookup, usd
 
