@@ -82,8 +82,8 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = cur.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
+        rows = cur.execute("SELECT * FROM users WHERE username = %s", (request.form.get("username",))
+        print(rows)
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
