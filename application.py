@@ -43,8 +43,8 @@ Session(app)
 conn = psycopg2.connect(database="d9dbadah2gk8f7", user="ziznnimeremyjy", password="3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5", host="ec2-54-217-224-85.eu-west-1.compute.amazonaws.com", port="5432")
 print("Database opened successfully")
 cur = conn.cursor()
-db = SQL("postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
 
+db = SQL("Heroku---postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
 
 
 @app.route("/")
@@ -58,7 +58,7 @@ def index():
 @login_required
 def history():
     """Show history of calculations"""
-    history = cur.execute("SELECT * FROM history WHERE id=:id", id=session["user_id"])
+    history = db.execute("SELECT * FROM history WHERE id=:id", id=session["user_id"])
     print(history)
     return render_template("history.html", history=history)
 
@@ -82,7 +82,7 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = cur.execute("SELECT * FROM users WHERE username = :username",
+        rows = db.execute("SELECT * FROM users WHERE username = :username",
                           username=request.form.get('username'))
 
         # Ensure username exists and password is correct
@@ -173,7 +173,7 @@ def calculator():
 
             choice = request.form.get("planet")
 
-            cur.execute("INSERT INTO history (id, world, earth_weight, world_weight, date) VALUES (:id, :world, :earth_weight, :world_weight, :date)", id=session["user_id"], world=choice, earth_weight=entered_weight, world_weight=result, date=datetime.now().strftime("%Y-%m-%d"))
+            db.execute("INSERT INTO history (id, world, earth_weight, world_weight, date) VALUES (:id, :world, :earth_weight, :world_weight, :date)", id=session["user_id"], world=choice, earth_weight=entered_weight, world_weight=result, date=datetime.now().strftime("%Y-%m-%d"))
             return render_template("result.html", moon=moon, mercury=mercury, venus=venus, mars=mars, jupiter=jupiter, saturn=saturn, uranus=uranus, neptune=neptune, choice=choice, entered_weight=entered_weight, result=result, pluto=pluto)
 
 
@@ -204,7 +204,7 @@ def register():
             return apology("password and confirmation do not match", 403)
 
         # Querying the database
-        users = cur.execute("SELECT * FROM users WHERE username = :username", username=request.form.get('username'))
+        users = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get('username'))
 
         # Hashing password
         hashed = generate_password_hash(request.form.get("password"), method='pbkdf2:sha256', salt_length=8)
@@ -225,7 +225,7 @@ def register():
 
         # Checking if the user exists and inserting if negative
         if len(users) != 1:
-            cur.execute("INSERT INTO users (username, hash, email) VALUES (:username, :hashed, :email)", username=username, hashed=hashed, email=email)
+            db.execute("INSERT INTO users (username, hash, email) VALUES (:username, :hashed, :email)", username=username, hashed=hashed, email=email)
             return redirect("/")
         else:
             return apology("That username already exists")
