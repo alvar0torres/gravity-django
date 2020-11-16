@@ -37,8 +37,8 @@ Session(app)
 
 # Configure CS50 Library to use Postgres database
 
-DB_HOST = os.environ.get("DB_HOST")
-db = DB_HOST
+db = SQL(os.environ.get("DB_HOST"))
+
 
 
 @app.route("/")
