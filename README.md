@@ -5,5 +5,3 @@ The purpose of this web application is to allow users to convert a given weight 
 For using the calculator it is necessary to register/login. When registering, the user's info is stored in a database.
 Additionally, the application allows users to check the history of calculations, because they were stored in the database as well.
 
-BY: Alvaro Torres
-
