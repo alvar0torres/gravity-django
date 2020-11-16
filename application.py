@@ -170,9 +170,12 @@ def calculator():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
     """Register user"""
+
     if request.method == "GET":
         return render_template("register.html")
+        
     if request.method == "POST":
          # Ensure username was submitted
         if not request.form.get("username"):
