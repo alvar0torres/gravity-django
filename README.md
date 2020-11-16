@@ -1,4 +1,4 @@
-# gravityforce
+# Gravity
 
 NAME OF THE PROJECT: Gravity
 
