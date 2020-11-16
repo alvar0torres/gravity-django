@@ -8,6 +8,8 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+
+
 from helpers import apology, login_required, lookup, usd
 
 # Configure application
@@ -28,29 +30,29 @@ def after_request(response):
 app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
+
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use Postgres database
 
-db = SQL("postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee4524d1ed96bd5fc13ce5@ec2-54-217-224-85.eu-west-1.compute.amazonaws.com:5432/d9dbadah2gk8f7")
+db = SQL("postgres://gvdxdoalhoybqk:298e9c02ec9d1fd49a1b0f79cee543084cfe4e0553f3d3fbba0aabf8661bde06@ec2-52-208-138-246.eu-west-1.compute.amazonaws.com:5432/d15gpd08ouqidk")
 
 
 @app.route("/")
 @login_required
 def index():
-    
+
     return render_template("welcome.html")
 
 
 @app.route("/history")
 @login_required
 def history():
-
     """Show history of calculations"""
-
     history = db.execute("SELECT * FROM history WHERE id=:id", id=session["user_id"])
+    print(history)
     return render_template("history.html", history=history)
 
 
@@ -170,12 +172,9 @@ def calculator():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-
     """Register user"""
-
     if request.method == "GET":
         return render_template("register.html")
-        
     if request.method == "POST":
          # Ensure username was submitted
         if not request.form.get("username"):
