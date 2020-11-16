@@ -30,7 +30,6 @@ def after_request(response):
 app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
-
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -43,16 +42,17 @@ db = SQL("postgres://ziznnimeremyjy:3d1b6b35cb8015c5a0b0f4e77b82234578ae4ffba7ee
 @app.route("/")
 @login_required
 def index():
-
+    
     return render_template("welcome.html")
 
 
 @app.route("/history")
 @login_required
 def history():
+
     """Show history of calculations"""
+
     history = db.execute("SELECT * FROM history WHERE id=:id", id=session["user_id"])
-    print(history)
     return render_template("history.html", history=history)
 
 
